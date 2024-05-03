@@ -9,6 +9,7 @@ function App() {
     grade: '',
     classesMode: '',
   });
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,11 +19,12 @@ function App() {
     });
   };
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3000/entry', formData);
-      alert('Entry saved successfully');
+      await axios.post('https://book-demo-backend.onrender.com/entry', formData);
+      setSuccessMessage('Entry saved successfully');
       setFormData({
         nameOfParent: '',
         parentsContactNo: '',
@@ -36,7 +38,7 @@ function App() {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white rounded p-6 shadow-md">
+    <div className="max-w-md mx-auto bg-white rounded p-6 shadow-md" style={{ backgroundImage: 'url("./images/back-demo.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', }}>
       <h1 className="text-2xl font-bold mb-4">Book Demo</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -56,7 +58,7 @@ function App() {
           <input type="text" id="classesMode" name="classesMode" value={formData.classesMode} onChange={handleChange} className="mt-1 p-2 border border-gray-300 rounded-md w-full" />
         </div>
         <div>
-          <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md">Submit</button>
+          <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md">Book Demo Class Now</button>
         </div>
       </form>
     </div>
